@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.template import loader
 
 from mainsite.models import News
+# from mainsite.forms import FormCreate
 
 
 def index(request):
@@ -41,6 +42,20 @@ def resources(request):
 
 
 def contact(request):
+    # upload = FormCreate()
+    # if request.method == 'POST':
+    #     upload = DeliveryCreate(request.POST, request.FILES)
+    #     if upload.is_valid():
+    #         upload.save()
+    #         return redirect('/delivery')
+    #     else:
+    #         return HttpResponse("""your form is wrong, reload on <a href = "{{ url : '/delivery'}}">reload</a>""")
+    # else:
+    #     context = {
+    #         "upload_form": upload,
+    #         "action": "Добавить"
+    #     }
+    #     return render(request, 'delivery/create.html', context)
     context = {}
     context['segment'] = 'contact'
 
