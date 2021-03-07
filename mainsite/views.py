@@ -4,9 +4,12 @@ from django.shortcuts import render
 
 from django.template import loader
 
+from mainsite.models import News
+
 
 def index(request):
-    context = {}
+    list = News.objects.all().order_by('-id')[:3]
+    context = {"list": list}
     context['segment'] = 'index'
 
     html_template = loader.get_template('main-site/index.html')
@@ -42,4 +45,13 @@ def contact(request):
     context['segment'] = 'contact'
 
     html_template = loader.get_template('main-site/contact.html')
+    return HttpResponse(html_template.render(context, request))
+
+
+def news(request):
+    list = News.objects.all()
+    context = {"list": list}
+    context['segment'] = 'news'
+
+    html_template = loader.get_template('main-site/news.html')
     return HttpResponse(html_template.render(context, request))

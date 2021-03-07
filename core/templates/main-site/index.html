@@ -8,7 +8,7 @@
 							<div class="slide-content">
 								<h2 class="slide-title">Получить ваши <strong>Страхование жизни</strong></h2>
 								<p> Вы хотите, чтобы финансовое состояние вашей семьи было спланировано на долгие годы, хотите обеспечить постоянный рост ваших накоплений и защиту их от инфляции? Вы хотите, чтобы, независимо от ваших сбережений, вы и ваши близкие были материально защищены на случай непредвиденных ситуаций в вашей жизни?</p>
-								<a href="#" class="button">Связаться с нами</a>
+								<a href="{% url 'contact' %}" class="button">Связаться с нами</a>
 							</div>
 						</div>
 					</li>
@@ -17,7 +17,7 @@
 							<div class="slide-content">
 								<h2 class="slide-title">Получить ваши <strong>Страхование жизни</strong></h2>
 								<p> Вы хотите, чтобы финансовое состояние вашей семьи было спланировано на долгие годы, хотите обеспечить постоянный рост ваших накоплений и защиту их от инфляции? Вы хотите, чтобы, независимо от ваших сбережений, вы и ваши близкие были материально защищены на случай непредвиденных ситуаций в вашей жизни?</p>
-								<a href="#" class="button">Связаться с нами</a>
+								<a href="{% url 'contact' %}" class="button">Связаться с нами</a>
 							</div>
 						</div>
 					</li>
@@ -26,7 +26,7 @@
 							<div class="slide-content">
 								<h2 class="slide-title">Получить ваши <strong>Страхование жизни</strong></h2>
 								<p> Вы хотите, чтобы финансовое состояние вашей семьи было спланировано на долгие годы, хотите обеспечить постоянный рост ваших накоплений и защиту их от инфляции? Вы хотите, чтобы, независимо от ваших сбережений, вы и ваши близкие были материально защищены на случай непредвиденных ситуаций в вашей жизни?</p>
-								<a href="#" class="button">Связаться с нами</a>
+								<a href="{% url 'contact' %}" class="button">Связаться с нами</a>
 							</div>
 						</div>
 					</li>
@@ -36,7 +36,7 @@
 			<main class="main-content">
 				<div class="fullwidth-block greet-section">
 					<div class="container">
-						<h2 class="section-title">Welcome to our website</h2>
+						<h2 class="section-title">Добро пожаловать на наш сайт</h2>
 						<small class="section-subtitle">Etiam suscipit leo tincidunt risus dignissim quisque semper mollis</small>
 
 						<div class="row">
@@ -149,29 +149,17 @@
 
 				<div class="fullwidth-block">
 					<div class="container">
-						<h2 class="section-title">Latest news</h2>
+						<h2 class="section-title">Последние новости</h2>
 						<div class="row news-list">
-							<div class="col-md-4">
+                            {% for l in list %}
+                              <div class="col-md-4">
 								<div class="news">
-									<figure><img src="/static/assets/main/dummy/featured-image-1.jpg" alt=""></figure>
-									<div class="date"><img src="images/icon-calendar.png" alt="">03/09/2014</div>
-									<h2 class="entry-title"><a href="#">Donec laoreet non nec aliquam pellentesque interdum</a></h2>
+									<figure><img src="/media/{{l.img}}" alt="" width="100%" height="185"></figure>
+									<div class="date"><img src="static/assets/main/images/icon-calendar.png" alt="">{{ l.created_at|date:"Y-m-d" }}</div>
+									<h2 class="entry-title"><a href="#">{{ l.name|truncatewords:20 }}</a></h2>
 								</div>
 							</div>
-							<div class="col-md-4">
-								<div class="news">
-									<figure><img src="/static/assets/main/dummy/featured-image-2.jpg" alt=""></figure>
-									<div class="date"><img src="images/icon-calendar.png" alt="">03/09/2014</div>
-									<h2 class="entry-title"><a href="#">Donec laoreet non nec aliquam pellentesque interdum</a></h2>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="news">
-									<figure><img src="/static/assets/main/dummy/featured-image-3.jpg" alt=""></figure>
-									<div class="date"><img src="images/icon-calendar.png" alt="">03/09/2014</div>
-									<h2 class="entry-title"><a href="#">Donec laoreet non nec aliquam pellentesque interdum</a></h2>
-								</div>
-							</div>
+                            {% endfor %}
 						</div> <!-- .row -->
 					</div> <!-- .container -->
 				</div> <!-- .latest-news-section -->
@@ -196,7 +184,7 @@
 
 				<div class="fullwidth-block">
 					<div class="container">
-						<h2 class="section-title">Our partners</h2>
+						<h2 class="section-title">Наши партнеры</h2>
 
 						<div class="partners">
 							<a href="#"><img src="/static/assets/main/dummy/money-logo.png" alt=""></a>

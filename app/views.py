@@ -6,6 +6,8 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 
+from mainsite.models import News
+
 
 @login_required(login_url="/admin-panel/login/")
 def index(request):
@@ -15,6 +17,16 @@ def index(request):
     html_template = loader.get_template('index.html')
     return HttpResponse(html_template.render(context, request))
 
+
+
+@login_required(login_url="/admin-panel/login/")
+def news(request):
+    list = News.objects.all()
+    context = {"list": list}
+    context['segment'] = 'news'
+
+    html_template = loader.get_template('news.html')
+    return HttpResponse(html_template.render(context, request))
 
 @login_required(login_url="/admin-panel/login/")
 def pages(request):
