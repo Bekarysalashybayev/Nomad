@@ -5,7 +5,6 @@ Copyright (c) 2019 - present AppSeed.us
 
 import os
 
-import django_heroku
 from decouple import config
 from unipath import Path
 import dj_database_url
@@ -129,4 +128,3 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 #############################################################
 #############################################################
-django_heroku.settings(locals())
