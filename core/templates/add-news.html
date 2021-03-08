@@ -1,0 +1,53 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    <div class="row">
+        <a href="/admin-panel/news" class="btn confirm-delete" style="background-color: #ab47bc; margin-left: 30px; font-weight: bold;">Новости</a>
+    </div>
+        <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Добавить Новости</h4>
+                  <p class="card-category"></p>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                        <div class="col-md-6 mt-5">
+                            <form method='POST' enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label>Название</label>
+                                    <input type="text" class="form-control" name="name" value="{{ ProductModel.name }}" placeholder="название новости" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label for="exampleFormControlTextarea1">Описание</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+                                              rows="5" required>{{ ProductModel.description }}
+                                    </textarea>
+                                </div>
+                                {% if ProductModel.img %}
+                                    <img src="/media/{{ ProductModel.img }}" alt="" width="300" height="auto">
+                                    <input type="file" class="form-control" name="img" >
+                                {% else %}
+                                    <input type="file" class="form-control" name="img" required>
+                                {% endif %}
+                                <button type="submit" class="btn btn-primary">Сохранить</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

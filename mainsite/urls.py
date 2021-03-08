@@ -10,4 +10,5 @@ urlpatterns = [
     path('/resources', views.resources, name='resources'),
     path('/contact', views.contact, name='contact'),
     path('/news', views.news, name='news'),
+    path('/news/detail/<int:news_id>', views.news_detail, name='news-detail'),
 ]

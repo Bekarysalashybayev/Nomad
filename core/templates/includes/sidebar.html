@@ -14,7 +14,7 @@
             </a>
           </li>
           <li class="nav-item {% if 'page-user' in segment %} active {% endif %}">
-            <a class="nav-link" href="/admin-panel/page-user.html">
+            <a class="nav-link" href="{% url 'profile' %}">
               <i class="material-icons">person</i>
               <p>Профиль</p>
             </a>
@@ -26,13 +26,13 @@
             </a>
           </li>
           <li class="nav-item {% if 'ui-typography' in segment %} active {% endif %}">
-            <a class="nav-link" href="/admin-panel/ui-typography.html">
+            <a class="nav-link" href="#">
               <i class="material-icons">library_books</i>
               <p>Запросы</p>
             </a>
           </li>
           <li class="nav-item {% if 'ui-icons' in segment %} active {% endif %}">
-            <a class="nav-link" href="/admin-panel/ui-icons.html">
+            <a class="nav-link" href="{% url 'contactforms' %}">
               <i class="material-icons">bubble_chart</i>
               <p>Обратная связь</p>
             </a>
@@ -44,7 +44,7 @@
 {#            </a>#}
 {#          </li>#}
           <li class="nav-item {% if 'ui-notifications' in segment %} active {% endif %}">
-            <a class="nav-link" href="/admin-panel/ui-notifications.html">
+            <a class="nav-link" href="#">
               <i class="material-icons">notifications</i>
               <p>Уведомления</p>
             </a>

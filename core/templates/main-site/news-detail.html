@@ -1,0 +1,34 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+
+			<main class="main-content">
+				<div class="breadcrumbs">
+					<div class="container">
+						<a href="{% url 'home' %}">Главная</a>
+						<span><a href="{% url 'news' %}">Новости</a></span>
+                        <span>{{ name }}</span>
+					</div>
+				</div>
+
+				<div class="fullwidth-block">
+					<div class="container">
+						<h2 class="section-title">Новости</h2>
+						<div class="row news-list">
+                            <div class="col-md-4">
+                                <div class="news">
+									<figure><img src="/media/{{img}}" alt="" width="100%" height="185"></figure>
+
+								</div>
+							</div>
+                            <div class="col-md-8">
+                                <h3>{{ name }}</h3>
+                                <p>{{ desc }}</p>
+                                <b><div class="date"><img src="static/assets/main/images/icon-calendar.png" alt="">{{ created_at|date:"Y-m-d" }}</div></b>
+                            </div>
+						</div> <!-- .row -->
+					</div> <!-- .container -->
+				</div> <!-- .latest-news-section -->
+			</main>
+{% endblock content %}

@@ -156,7 +156,7 @@
 								<div class="news">
 									<figure><img src="/media/{{l.img}}" alt="" width="100%" height="185"></figure>
 									<div class="date"><img src="static/assets/main/images/icon-calendar.png" alt="">{{ l.created_at|date:"Y-m-d" }}</div>
-									<h2 class="entry-title"><a href="#">{{ l.name|truncatewords:20 }}</a></h2>
+									<h2 class="entry-title"><a href="/%2Fnews/detail/{{ l.id }}">{{ l.name|truncatewords:20 }}</a></h2>
 								</div>
 							</div>
                             {% endfor %}

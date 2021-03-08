@@ -1,10 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.template import loader
 
+from mainsite.forms import FormCreate
 from mainsite.models import News
+
+
 # from mainsite.forms import FormCreate
 
 
@@ -42,25 +45,20 @@ def resources(request):
 
 
 def contact(request):
-    # upload = FormCreate()
-    # if request.method == 'POST':
-    #     upload = DeliveryCreate(request.POST, request.FILES)
-    #     if upload.is_valid():
-    #         upload.save()
-    #         return redirect('/delivery')
-    #     else:
-    #         return HttpResponse("""your form is wrong, reload on <a href = "{{ url : '/delivery'}}">reload</a>""")
-    # else:
-    #     context = {
-    #         "upload_form": upload,
-    #         "action": "Добавить"
-    #     }
-    #     return render(request, 'delivery/create.html', context)
-    context = {}
-    context['segment'] = 'contact'
-
-    html_template = loader.get_template('main-site/contact.html')
-    return HttpResponse(html_template.render(context, request))
+    upload = FormCreate()
+    if request.method == 'POST':
+        upload = FormCreate(request.POST)
+        if upload.is_valid():
+            upload.save()
+            return redirect('/%2Fcontact')
+        else:
+            return HttpResponse("""your form is wrong, reload on <a href = "{{ url : '/%2Fcontact'}}">reload</a>""")
+    else:
+        context = {
+            "upload_form": upload,
+            "action": "Добавить"
+        }
+        return render(request, 'main-site/contact.html', context)
 
 
 def news(request):
@@ -69,4 +67,12 @@ def news(request):
     context['segment'] = 'news'
 
     html_template = loader.get_template('main-site/news.html')
+    return HttpResponse(html_template.render(context, request))
+
+
+def news_detail(request, news_id: int):
+    list = News.objects.get(pk=news_id)
+    context = {"name": list.name, "img": list.img, "desc": list.description, "created_at": list.created_at}
+
+    html_template = loader.get_template('main-site/news-detail.html')
     return HttpResponse(html_template.render(context, request))
