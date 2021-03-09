@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django import template
 
 from mainsite.forms import NewsCreate
-from mainsite.models import News, ContactForm
+from mainsite.models import News, ContactForm, Issue
 
 
 @login_required(login_url="/admin-panel/login/")
@@ -92,6 +92,15 @@ def contactforms(request):
     html_template = loader.get_template('contact-forms.html')
     return HttpResponse(html_template.render(context, request))
 
+
+@login_required(login_url="/admin-panel/login/")
+def requests(request):
+    list = Issue.objects.all()
+    context = {"list": list}
+    context['segment'] = 'requests'
+
+    html_template = loader.get_template('requests.html')
+    return HttpResponse(html_template.render(context, request))
 
 @login_required(login_url="/admin-panel/login/")
 def delete_contact_form(request, contact_id):

@@ -16,6 +16,7 @@ urlpatterns = [
     path('news/update/<int:news_id>', update_news),
     path('news/delete/<int:news_id>', delete_news),
     path('contacts', contactforms, name='contactforms'),
+    path('requests', requests, name='requests'),
     path('contact/delete/<int:contact_id>', delete_contact_form, ),
 
     # Matches any html file

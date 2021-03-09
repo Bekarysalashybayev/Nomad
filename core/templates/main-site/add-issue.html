@@ -1,0 +1,91 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+			<main class="main-content">
+				<div class="breadcrumbs">
+					<div class="container">
+						<a href="{% url 'home' %}">Главная</a>
+						<span>Ресурсы</span>
+					</div>
+				</div>
+
+				<div class="page">
+					<div class="container">
+                        <h3>{{ title }}</h3>
+                        <hr>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row" style="padding-left: 30px;background-color: #F3F3F3">
+                                <p style="font-weight: bolder; color: black">{{ title1 }}</p>
+                                <div class="row" style="width: 100%; margin-top: -10px;">
+                                    <div class="col-md-3">
+                                        <p>Тип страховки</p>
+                                        <select name="insurance" id="" style="width: 90%; background-color: whitesmoke">
+                                            <option value="{{ insurance.id }}">{{ insurance.name }}</option>{#
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <p>{{ insurance.doc1 }}</p>
+                                        <select name="doc1" id="" style="width: 90%; background-color: whitesmoke">
+                                            {% for i in list %}
+                                                <option value="{{ i.name }}">{{ i.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p>Город</p>
+                                        <select name="doc2" id="" style="width: 90%; background-color: whitesmoke">
+                                            {% for c in city %}
+                                                <option value="{{ c.city }}">{{ c.city }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p>{{ insurance.doc3 }}</p>
+                                        <input type="text" name="doc3" style="width: 90%; background-color: whitesmoke" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-left: 30px;background-color: #F3F3F3">
+                                <p style="font-weight: bolder; color: black">Личные данные</p>
+                                <div class="row" style="width: 100%; margin-top: -10px;">
+                                    <div class="col-md-3">
+                                        <p>ИИН</p>
+                                        <input type="text" name="iin" style="width: 90%; background-color: whitesmoke" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <p>ФИО</p>
+                                        <input type="text" name="fio" style="width: 90%; background-color: whitesmoke" required>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p>Дата рождения</p>
+                                        <input type="date" name="bday" style="width: 90%; background-color: whitesmoke" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-left: 30px;background-color: #F3F3F3">
+                                <p style="font-weight: bolder; color: black">Контактные данные</p>
+                                <div class="row" style="width: 100%; margin-top: -10px;">
+                                    <div class="col-md-6">
+                                      <p>Номер телефона</p>
+                                        <input type="text" name="phone" style="width: 90%; background-color: whitesmoke" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Почта</p>
+                                        <input type="text" name="email" style="width: 90%; background-color: whitesmoke" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10"></div>
+                                <div class="col-md-2">
+                                    <input type="submit" class="btn btn-danger" value="Отправить заявку" style="width: 100%;" required>
+                                </div>
+                            </div>
+                        </form>
+					</div>
+				</div> <!-- .page -->
+			</main>
+
+			{% endblock content %}
