@@ -82,7 +82,7 @@ def add_issue(request, insurance_id: int):
         upload = IssueCreate(request.POST)
         if upload.is_valid():
             upload.save()
-            return redirect('/%2Fresources/'+insurance_id.__str__())
+            return redirect('/%2Finsurance')
         else:
             return HttpResponse(
                 """your form is wrong, reload on <a href = "{{ url : '/'}}">reload</a>""")
