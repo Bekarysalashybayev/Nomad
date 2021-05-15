@@ -5,8 +5,8 @@
 			<main class="main-content">
 				<div class="breadcrumbs">
 					<div class="container">
-						<a href="{% url 'home' %}">Главная</a>
-						<span>Ресурсы</span>
+						<a href="{% url 'home' %}">Басты</a>
+						<span>Ресурстар</span>
 					</div>
 				</div>
 
@@ -20,7 +20,7 @@
                                 <p style="font-weight: bolder; color: black">{{ title1 }}</p>
                                 <div class="row" style="width: 100%; margin-top: -10px;">
                                     <div class="col-md-3">
-                                        <p>Тип страховки</p>
+                                        <p>Сақтандыру түрі</p>
                                         <select name="insurance" id="" style="width: 90%; background-color: whitesmoke">
                                             <option value="{{ insurance.id }}">{{ insurance.name }}</option>{#
                                         </select>
@@ -33,52 +33,54 @@
                                             {% endfor %}
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
-                                        <p>Город</p>
-                                        <select name="doc2" id="" style="width: 90%; background-color: whitesmoke">
-                                            {% for c in city %}
-                                                <option value="{{ c.city }}">{{ c.city }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
+
                                     <div class="col-md-3">
                                         <p>{{ insurance.doc3 }}</p>
                                         <input type="text" name="doc3" style="width: 90%; background-color: whitesmoke" required>
                                     </div>
+                                    <div class="col-md-3">
+                                            <p>қашанға дейін</p>
+                                        <input type="date" min="{{ today }}" name="dates" onchange="myFunction()" id="mySelect">
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="row" style="padding-left: 30px;background-color: #F3F3F3">
-                                <p style="font-weight: bolder; color: black">Личные данные</p>
+                                <p style="font-weight: bolder; color: black">Жеке деректер</p>
                                 <div class="row" style="width: 100%; margin-top: -10px;">
                                     <div class="col-md-3">
-                                        <p>ИИН</p>
+                                        <p>ЖСН</p>
                                         <input type="text" name="iin" style="width: 90%; background-color: whitesmoke" required>
                                     </div>
                                     <div class="col-md-6">
-                                      <p>ФИО</p>
+                                      <p>Толық аты</p>
                                         <input type="text" name="fio" style="width: 90%; background-color: whitesmoke" required>
                                     </div>
                                     <div class="col-md-3">
-                                        <p>Дата рождения</p>
+                                        <p>Туған күні</p>
                                         <input type="date" name="bday" style="width: 90%; background-color: whitesmoke" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row" style="padding-left: 30px;background-color: #F3F3F3">
-                                <p style="font-weight: bolder; color: black">Контактные данные</p>
+                                <p style="font-weight: bolder; color: black">Байланыс мәліметтері</p>
                                 <div class="row" style="width: 100%; margin-top: -10px;">
                                     <div class="col-md-6">
-                                      <p>Номер телефона</p>
+                                      <p>Телефон нөмірі</p>
                                         <input type="text" name="phone" style="width: 90%; background-color: whitesmoke" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>Почта</p>
+                                        <p>Электрондық пошта</p>
                                         <input type="text" name="email" style="width: 90%; background-color: whitesmoke" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-10"></div>
+                                <div class="col-md-10">
+                                    <label for="" style="margin-right: 10px"> Сомасы теңгемен</label>
+                                    <input type="hidden"  name="total"  value="{{ insurance.price}}"  id="total" >
+                                    <input type="number"  name="total1"  value="{{ insurance.price}}"  id="total1" disabled style="width: 100px"> тг
+                                </div>
                                 <div class="col-md-2">
                                     <input type="submit" class="btn btn-danger" value="Отправить заявку" style="width: 100%;" required>
                                 </div>
@@ -89,3 +91,20 @@
 			</main>
 
 			{% endblock content %}
+{% block javascripts %}
+    <script>
+function myFunction() {
+  let x = document.getElementById("mySelect").value;
+  let price = document.getElementById("total").value;
+  let date1 = new Date(x);
+  let present_date = new Date();
+  let Difference_In_Time = date1.getTime() - present_date.getTime();
+
+// To calculate the no. of days between two dates
+  let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+  document.getElementById("total").value = "" + parseInt(Difference_In_Days) * parseInt(price);
+   document.getElementById("total1").value = "" + parseInt(Difference_In_Days) * parseInt(price);
+}
+    </script>
+{% endblock javascripts %}

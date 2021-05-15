@@ -7,6 +7,7 @@ class Insurance(models.Model):
     doc1 = models.CharField(max_length=255, null=True)
     doc2 = models.CharField(max_length=255, null=True)
     doc3 = models.CharField(max_length=255, null=True)
+    price = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -22,6 +23,7 @@ class Issue(models.Model):
     doc3 = models.CharField(max_length=255, null=True)
     phone = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
+    total = models.IntegerField(default=0)
 
     def __str__(self):
         return self.fio

@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -77,6 +79,7 @@ def news_detail(request, news_id: int):
 
 
 def add_issue(request, insurance_id: int):
+    print(request.POST)
     upload = IssueCreate()
     if request.method == 'POST':
         upload = IssueCreate(request.POST)
@@ -84,6 +87,7 @@ def add_issue(request, insurance_id: int):
             upload.save()
             return redirect('/%2Finsurance')
         else:
+            print(upload.errors)
             return HttpResponse(
                 """your form is wrong, reload on <a href = "{{ url : '/'}}">reload</a>""")
 
@@ -94,22 +98,40 @@ def add_issue(request, insurance_id: int):
     list = {}
     title = ""
     title1 = ""
+    today = str(date.today())
     if insurance_id == 2:
-        title = "Страхование автомобиля"
-        title1 = "Автомобиль"
+        title = "Көлік сақтандыру"
+        title1 = "Автокөлік"
         list = TypeCar.objects.all()
     elif insurance_id == 1:
-        title = "Страхование здаровье"
-        title1 = "Здаровье"
+        title = "Медициналық сақтандыру"
+        title1 = "Денсаулық"
         list = Hospital.objects.all()
     elif insurance_id == 3:
-        title = "Страхование путешествий"
-        title1 = "Путешествие"
+        title = "Саяхаттарды сақтандыру"
+        title1 = "Саяхат"
+        list = [
+            {'name': "Шенген" },
+            {'name': "США"},
+            {'name': "Россия"},
+            {'name': "США"},
+            {'name': "Турция"},
+            {'name': "ОАЭ"},
+            {'name': "Грузия"},
+            {'name': "Канада"},
+            {'name': "Бразилия"},
+            {'name': "Австрия"},
+            {'name': "Бельгия"},
+        ]
     elif insurance_id == 4:
-        title = "Страхование имущества"
-        title1 = "Имущество"
-
-    context = {'insurance': insurance, 'list': list, 'city': cities, 'title': title, 'title1': title1}
+        title = "Мүлікті сақтандыру"
+        title1 = "Мүлік"
+        list = [
+            {'name': "үй"},
+            {'name': "Көлік"},
+            {'name': "ДрБасқаугое"}
+        ]
+    context = {'insurance': insurance, 'list': list, 'city': cities, 'title': title, 'title1': title1, 'today': today}
 
     html_template = loader.get_template('main-site/add-issue.html')
     return HttpResponse(html_template.render(context, request))
