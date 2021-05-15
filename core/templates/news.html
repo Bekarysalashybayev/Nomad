@@ -84,7 +84,8 @@
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}<script type="text/javascript">
+{% block javascripts %}
+<script type="text/javascript">
     $(document).on('click', '.confirm-delete', function () {
         $("#confirmDeleteModal").attr("caller-id", $(this).attr("id"));
     });
