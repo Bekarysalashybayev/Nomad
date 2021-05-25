@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="col-md-2">
                                             <p>қашаннан</p>
-                                        <input type="date" min="{{ today }}" name="dates1" id="mySelect1"  onchange="document.getElementById('mySelect').min=this.value;" required>
+                                        <input type="date" min="{{ today }}" name="dates1" id="mySelect1"  onchange="myFunction()" required>
 
                                     </div>
                                  <div class="col-md-2">
@@ -104,6 +104,7 @@ function myFunction() {
   let price = document.getElementById("current").value;
   let date1 = new Date(x);
   let present_date = new Date(document.getElementById("mySelect1").value);
+  document.getElementById('mySelect').min=document.getElementById("mySelect1").value;
   {#console.log(present_date)#}
   {#console.log(date1)#}
 
